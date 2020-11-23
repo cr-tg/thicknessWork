@@ -1,1 +1,1 @@
-const char * logl_root = "E:/vs project/thickNessWork/thicknessWork";
+const char * logl_root = "E:/vs project/thicknessWork";

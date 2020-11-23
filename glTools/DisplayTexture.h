@@ -39,7 +39,7 @@ private:
 	CTextureDisplay() 
 	{
 		//const std::string pathstr = "./shaders/";//dll加载到项目以后，使用的就是exe的当前路径了，因此这里要使用绝对路径
-		const std::string pathstr = "E:/vs project/thickNessWork/thicknessWork/glTools/shaders/";
+		const std::string pathstr = "E:/vs project/thicknessWork/glTools/shaders/";
 		texShowShader = Shader((pathstr + "texShow.vs").c_str(), (pathstr + "texShow.fs").c_str());
 		texArrayShowShader = Shader((pathstr + "texShow.vs").c_str(), (pathstr + "texArrayShow.fs").c_str());
 		texMsaaShowShader = Shader((pathstr + "texShow.vs").c_str(), (pathstr + "msaaTexShow.fs").c_str());
