@@ -1,0 +1,26 @@
+﻿  thicknessDualDepthPeeling.cpp
+E:\vs project\thickNessWork\thicknessWork\includes\learnopengl\mesh.h(88,1): warning C4267: “参数”: 从“size_t”转换到“GLsizei”，可能丢失数据
+E:\vs project\thickNessWork\thicknessWork\thickNessTestWithDualDepthPeeling\thicknessDualDepthPeeling.cpp(109,49): warning C4244: “参数”: 从“T”转换到“int”，可能丢失数据
+          with
+          [
+              T=float
+          ]
+E:\vs project\thickNessWork\thicknessWork\thickNessTestWithDualDepthPeeling\thicknessDualDepthPeeling.cpp(109,36): warning C4244: “参数”: 从“T”转换到“int”，可能丢失数据
+          with
+          [
+              T=float
+          ]
+E:\vs project\thickNessWork\thicknessWork\thickNessTestWithDualDepthPeeling\thicknessDualDepthPeeling.cpp(158,22): warning C4244: “初始化”: 从“double”转换到“float”，可能丢失数据
+E:\vs project\thickNessWork\thicknessWork\thickNessTestWithDualDepthPeeling\thicknessDualDepthPeeling.cpp(449,11): warning C4244: “=”: 从“double”转换到“float”，可能丢失数据
+E:\vs project\thickNessWork\thicknessWork\thickNessTestWithDualDepthPeeling\thicknessDualDepthPeeling.cpp(450,11): warning C4244: “=”: 从“double”转换到“float”，可能丢失数据
+E:\vs project\thickNessWork\thicknessWork\thickNessTestWithDualDepthPeeling\thicknessDualDepthPeeling.cpp(454,16): warning C4244: “初始化”: 从“double”转换到“float”，可能丢失数据
+E:\vs project\thickNessWork\thicknessWork\thickNessTestWithDualDepthPeeling\thicknessDualDepthPeeling.cpp(455,16): warning C4244: “初始化”: 从“double”转换到“float”，可能丢失数据
+E:\vs project\thickNessWork\thicknessWork\thickNessTestWithDualDepthPeeling\thicknessDualDepthPeeling.cpp(457,10): warning C4244: “=”: 从“double”转换到“float”，可能丢失数据
+E:\vs project\thickNessWork\thicknessWork\thickNessTestWithDualDepthPeeling\thicknessDualDepthPeeling.cpp(458,10): warning C4244: “=”: 从“double”转换到“float”，可能丢失数据
+E:\vs project\thickNessWork\thicknessWork\thickNessTestWithDualDepthPeeling\thicknessDualDepthPeeling.cpp(465,28): warning C4244: “参数”: 从“double”转换到“float”，可能丢失数据
+  正在生成代码
+  10 of 394 functions ( 2.5%) were compiled, the rest were copied from previous compilation.
+    0 functions were new in current compilation
+    6 functions had inline decision re-evaluated but remain unchanged
+  已完成代码的生成
+  thickNessTestWithDualDepthPeeling.vcxproj -> E:\vs project\thickNessWork\thicknessWork\x64\Release\thickNessTestWithDualDepthPeeling.exe

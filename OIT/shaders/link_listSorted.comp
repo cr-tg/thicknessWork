@@ -1,0 +1,87 @@
+#version 460 core
+
+layout(binding = 0,rgba32ui) uniform uimageBuffer linkedListsT;
+layout(binding = 1,r32ui) uniform uimage2D uListHeadPtrTex;
+layout(binding = 2) uniform writeonly image2D uListOutputColor;
+
+layout(local_size_x = 32, local_size_y = 32, local_size_z = 1) in;
+
+#define MAX_FRAGMENTS 15
+uvec4 fragments[MAX_FRAGMENTS];//存储当前像素下的所有可见片元
+
+int buildLocalFragmentList(uint headIndex);
+void insertSortFragmentList(int fragCount);
+vec4 calFinalColor(int fragCount);
+vec4 blend(vec4 preColor,vec4 currentColor);
+
+void main()
+{
+	uint headIndex = imageLoad(uListHeadPtrTex,ivec2(gl_GlobalInvocationID.xy)).r;
+	if(headIndex == 0) return;
+	int fragCount = buildLocalFragmentList(headIndex);
+	insertSortFragmentList(fragCount);
+	vec4 outColor = calFinalColor(fragCount);
+	imageStore(uListOutputColor,ivec2(gl_GlobalInvocationID.xy),outColor);
+}
+
+int buildLocalFragmentList(uint headIndex)
+{
+	int fragCount = 0;
+	uint curretIndex = headIndex;
+	while(curretIndex != 0 && fragCount < MAX_FRAGMENTS)
+	{
+		//uvec4 node = nodes[curretIndex].nodeData;
+		uvec4 node = uvec4(imageLoad(linkedListsT,int(curretIndex)));
+		fragments[fragCount] = node;
+		fragCount++;
+		curretIndex = node.x;
+	}
+	return fragCount;
+}
+
+void insertSortFragmentList(int fragCount)//插入排序
+{
+	int i,j;
+	for(int i = 0;i<fragCount-1;++i)
+	{
+		for(j = i+1;j>0;--j)
+		{
+			if(uintBitsToFloat(fragments[j].z) < uintBitsToFloat(fragments[j-1].z))//新来的数更小，就与前面的数交换
+			{
+				uvec4 temp = fragments[j-1];
+				fragments[j-1] = fragments[j];
+				fragments[j] = temp;
+			}
+			else break;//比前面的数更大，就证明整个序列是有序的
+		}
+	}
+}
+
+vec4 calFinalColor(int fragCount)
+{
+	if(fragCount == 0)
+		return vec4(vec3(0.3),1.0);//背景的颜色
+	vec4 preColor = unpackUnorm4x8(fragments[fragCount-1].y);//最后一层的颜色
+	for(int i=fragCount-2;i>-1;--i)
+	{
+		vec4 currentColor = unpackUnorm4x8(fragments[i].y);//每个分量就是用f/255.0
+		preColor = blend(preColor,currentColor);
+	}
+	return preColor;
+}
+
+vec4 blend(vec4 preColor,vec4 currentColor)
+{
+	vec4 blendColor;
+	blendColor = vec4(currentColor.rgb*currentColor.a+preColor.rgb*(1-currentColor.a),currentColor.a);
+	return blendColor;
+}
+
+
+// compute shader的内置变量的说明
+//gl_WorkGroupSize 存储本地工作组大小的常数，由local_size_x等决定
+//gl_NumWorkGroups 存储全局工作组的大小
+//gl_LocalInvocationID 当前执行单元在本地工作组的位置，从uvec3(0)到gl_WorkGroupSize-uvec3(1)
+//gl_WorkGroupID 当前工作组在更大的全局工作组的位置，从uvec3(0)到gl_NumWorkGroups-uvec3(1)
+//gl_GlobalInvocationID = gl_WorkGroupID*gl_WorkGroupSize + gl_LocalInvocationID
+//gl_LocalInvocationIndex = gl_LocalInvocationID的一维线性表达

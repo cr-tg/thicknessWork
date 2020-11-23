@@ -1,0 +1,22 @@
+﻿  SLAB.cpp
+E:\vs project\myWork\includes\learnopengl\mesh.h(88,1): warning C4267: “参数”: 从“size_t”转换到“GLsizei”，可能丢失数据
+E:\vs project\myWork\SLAB\SLAB.cpp(131,18): warning C4244: “初始化”: 从“double”转换到“float”，可能丢失数据
+E:\vs project\myWork\SLAB\SLAB.cpp(187,46): warning C4244: “参数”: 从“GLuint64”转换到“int”，可能丢失数据
+E:\vs project\myWork\SLAB\SLAB.cpp(236,22): warning C4244: “初始化”: 从“double”转换到“float”，可能丢失数据
+E:\vs project\myWork\SLAB\SLAB.cpp(496,42): warning C4305: “参数”: 从“double”到“T”截断
+          with
+          [
+              T=float
+          ]
+E:\vs project\myWork\SLAB\SLAB.cpp(669,11): warning C4244: “=”: 从“double”转换到“float”，可能丢失数据
+E:\vs project\myWork\SLAB\SLAB.cpp(670,11): warning C4244: “=”: 从“double”转换到“float”，可能丢失数据
+E:\vs project\myWork\SLAB\SLAB.cpp(674,16): warning C4244: “初始化”: 从“double”转换到“float”，可能丢失数据
+E:\vs project\myWork\SLAB\SLAB.cpp(675,16): warning C4244: “初始化”: 从“double”转换到“float”，可能丢失数据
+E:\vs project\myWork\SLAB\SLAB.cpp(677,10): warning C4244: “=”: 从“double”转换到“float”，可能丢失数据
+E:\vs project\myWork\SLAB\SLAB.cpp(678,10): warning C4244: “=”: 从“double”转换到“float”，可能丢失数据
+E:\vs project\myWork\SLAB\SLAB.cpp(685,28): warning C4244: “参数”: 从“double”转换到“float”，可能丢失数据
+  正在生成代码
+  Compiler version has changed, fall back to full compilation.
+  All 372 functions were compiled because no usable IPDB/IOBJ from previous compilation was found.
+  已完成代码的生成
+  SLAB.vcxproj -> E:\vs project\myWork\x64\Release\SLAB.exe

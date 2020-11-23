@@ -1,0 +1,20 @@
+﻿  screen2Door.cpp
+E:\vs project\myWork\includes\learnopengl\mesh.h(88,1): warning C4267: “参数”: 从“size_t”转换到“GLsizei”，可能丢失数据
+E:\vs project\myWork\screen2Door\screen2Door.cpp(152,22): warning C4244: “初始化”: 从“double”转换到“float”，可能丢失数据
+E:\vs project\myWork\screen2Door\screen2Door.cpp(400,42): warning C4305: “参数”: 从“double”到“T”截断
+          with
+          [
+              T=float
+          ]
+E:\vs project\myWork\screen2Door\screen2Door.cpp(583,11): warning C4244: “=”: 从“double”转换到“float”，可能丢失数据
+E:\vs project\myWork\screen2Door\screen2Door.cpp(584,11): warning C4244: “=”: 从“double”转换到“float”，可能丢失数据
+E:\vs project\myWork\screen2Door\screen2Door.cpp(588,16): warning C4244: “初始化”: 从“double”转换到“float”，可能丢失数据
+E:\vs project\myWork\screen2Door\screen2Door.cpp(589,16): warning C4244: “初始化”: 从“double”转换到“float”，可能丢失数据
+E:\vs project\myWork\screen2Door\screen2Door.cpp(591,10): warning C4244: “=”: 从“double”转换到“float”，可能丢失数据
+E:\vs project\myWork\screen2Door\screen2Door.cpp(592,10): warning C4244: “=”: 从“double”转换到“float”，可能丢失数据
+E:\vs project\myWork\screen2Door\screen2Door.cpp(599,28): warning C4244: “参数”: 从“double”转换到“float”，可能丢失数据
+  正在生成代码
+  Compiler version has changed, fall back to full compilation.
+  All 351 functions were compiled because no usable IPDB/IOBJ from previous compilation was found.
+  已完成代码的生成
+  screen2Door.vcxproj -> E:\vs project\myWork\x64\Release\screen2Door.exe

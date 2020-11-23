@@ -1,0 +1,128 @@
+
+
+//每次剥离，将这一层的深度和颜色保存到这一次的结果中，然后再将深度复制到allDepthMap的对应层中，颜色复制到allColorFBO中
+/*unsigned int depthPeelingFBO;
+unsigned int depthMap;
+unsigned int frontAndBackDepth;
+
+unsigned int prePeelingFBO;//保存上一层的fbo
+unsigned int preDepthMap;//allColorFBO中的深度纹理附件，因为保存的是上一层的深度，因此叫pre
+unsigned int preFrontAndBackDepth;//上一次双重剥离的最远和最近的片元
+
+
+void setFrameBuffers();
+		//光源下peeling，用来记录到光源的远近的片段的
+		for (int layIdx = 0; layIdx < allDepthLayer; layIdx++)
+		{
+			glBindFramebuffer(GL_FRAMEBUFFER, depthPeelingFBO);
+			//每次循环的时候都需要清除缓冲
+			glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+			glClearBufferfv(GL_COLOR, 0, depthClear);
+			dualDepthPeelingShader.use();
+			dualDepthPeelingShader.setMat4("projection", lightProjection);
+			dualDepthPeelingShader.setMat4("view", lightView);
+			dualDepthPeelingShader.setInt("uLayerIndex", layIdx);
+			glActiveTexture(GL_TEXTURE0);
+			glBindTexture(GL_TEXTURE_2D, preFrontAndBackDepth);
+			//gl_max 没有起作用的原因是没有关闭深度写入，导致只有最前面的片段被保存下来了
+			glDepthMask(GL_FALSE);
+			//dllRender->renderCubeSet(dualDepthPeelingShader);
+			dllRender->renderSphereSet(dualDepthPeelingShader);
+			glDepthMask(GL_TRUE);
+			//复制buffer的时候，不能复制小于0的color部分
+			glBindFramebuffer(GL_READ_FRAMEBUFFER, depthPeelingFBO);
+			glBindFramebuffer(GL_DRAW_FRAMEBUFFER, prePeelingFBO);
+			glBlitFramebuffer(0, 0, SCR_WIDTH, SCR_HEIGHT, 0, 0, SCR_WIDTH, SCR_HEIGHT,
+				GL_COLOR_BUFFER_BIT, GL_NEAREST);
+			glCopyImageSubData(frontAndBackDepth, GL_TEXTURE_2D, 0, 0, 0, 0,
+				allBackAndFrontDepthMap, GL_TEXTURE_2D_ARRAY, 0, 0, 0, layIdx, SCR_WIDTH, SCR_HEIGHT, 1);
+		}
+void setGBuffer()
+{
+	//存储相机下看到的最近的片段的世界坐标，即着色点
+	glGenTextures(1, &gPositionTex);
+	glBindTexture(GL_TEXTURE_2D, gPositionTex);
+	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA16F, SCR_WIDTH, SCR_HEIGHT, 0, GL_RGBA, GL_FLOAT, NULL);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
+
+	glGenRenderbuffers(1, &gRboDepth);
+	glBindRenderbuffer(GL_RENDERBUFFER, gRboDepth);
+	glRenderbufferStorage(GL_RENDERBUFFER, GL_DEPTH24_STENCIL8, SCR_WIDTH, SCR_HEIGHT);
+
+	glGenFramebuffers(1, &gBufferFBO);
+	glBindFramebuffer(GL_FRAMEBUFFER, gBufferFBO);
+	glFramebufferTexture2D(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, GL_TEXTURE_2D, gPositionTex, 0);
+	glFramebufferRenderbuffer(GL_FRAMEBUFFER, GL_DEPTH_STENCIL_ATTACHMENT, GL_RENDERBUFFER, gRboDepth);
+	glBindFramebuffer(GL_FRAMEBUFFER, 0);
+}
+
+void setFrameBuffers()
+{
+	glGenFramebuffers(1, &depthPeelingFBO);
+	glGenTextures(1, &depthMap);
+	glGenTextures(1, &frontAndBackDepth);
+
+
+	glBindTexture(GL_TEXTURE_2D, depthMap);
+	glTexImage2D(GL_TEXTURE_2D, 0, GL_DEPTH_COMPONENT, SCR_WIDTH, SCR_HEIGHT, 0, GL_DEPTH_COMPONENT, GL_FLOAT, NULL);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_BORDER);//光源看不到的地方的深度为1.0
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_BORDER);
+	glTexParameterfv(GL_TEXTURE_2D, GL_TEXTURE_BORDER_COLOR, borderColor);
+
+	glBindTexture(GL_TEXTURE_2D, frontAndBackDepth);
+	glTexImage2D(GL_TEXTURE_2D, 0, GL_RG32F, SCR_WIDTH, SCR_HEIGHT, 0, GL_RG, GL_FLOAT, NULL);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_BORDER);//光源看不到的地方的深度为1.0
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_BORDER);
+	glTexParameterfv(GL_TEXTURE_2D, GL_TEXTURE_BORDER_COLOR, borderColor);
+	glBindTexture(GL_TEXTURE_2D, 0);
+
+	glBindFramebuffer(GL_FRAMEBUFFER, depthPeelingFBO);
+	glFramebufferTexture2D(GL_FRAMEBUFFER, GL_DEPTH_ATTACHMENT, GL_TEXTURE_2D, depthMap, 0);
+	glFramebufferTexture2D(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, GL_TEXTURE_2D, frontAndBackDepth, 0);
+	glBlendFuncSeparatei(0, GL_ONE, GL_ONE, GL_ONE, GL_ONE);
+	glBlendEquationi(0, GL_MAX);
+	//glBlendEquationi(0, GL_MIN);
+	//glBlendEquationi(0, GL_FUNC_ADD);
+	glBindFramebuffer(GL_FRAMEBUFFER, 0);
+
+
+
+	glGenFramebuffers(1, &prePeelingFBO);
+	glGenTextures(1, &preDepthMap);
+	glGenTextures(1, &preFrontAndBackDepth);
+
+
+	glBindTexture(GL_TEXTURE_2D, preDepthMap);
+	glTexImage2D(GL_TEXTURE_2D, 0, GL_DEPTH_COMPONENT, SCR_WIDTH, SCR_HEIGHT, 0, GL_DEPTH_COMPONENT, GL_FLOAT, NULL);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_BORDER);//光源看不到的地方的深度为1.0
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_BORDER);
+	glTexParameterfv(GL_TEXTURE_2D, GL_TEXTURE_BORDER_COLOR, borderColor);
+
+	glBindTexture(GL_TEXTURE_2D, preFrontAndBackDepth);
+	glTexImage2D(GL_TEXTURE_2D, 0, GL_RG32F, SCR_WIDTH, SCR_HEIGHT, 0, GL_RG, GL_FLOAT, NULL);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_BORDER);//光源看不到的地方的深度为1.0
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_BORDER);
+	glTexParameterfv(GL_TEXTURE_2D, GL_TEXTURE_BORDER_COLOR, borderColor);
+	glBindTexture(GL_TEXTURE_2D, 0);
+
+	glBindFramebuffer(GL_FRAMEBUFFER, prePeelingFBO);
+	glFramebufferTexture2D(GL_FRAMEBUFFER, GL_DEPTH_ATTACHMENT, GL_TEXTURE_2D, preDepthMap, 0);
+	glFramebufferTexture2D(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, GL_TEXTURE_2D, preFrontAndBackDepth, 0);
+	//glBlendFuncSeparatei(0, GL_ONE, GL_ONE, GL_ONE, GL_ONE);
+	//glBlendEquationi(0, GL_MAX);
+	if (glCheckFramebufferStatus(GL_FRAMEBUFFER) != GL_FRAMEBUFFER_COMPLETE)
+	{
+		cout << glCheckFramebufferStatus(GL_FRAMEBUFFER) << endl;
+		std::cout << "Framebuffer::colorMapFBO not complete!" << std::endl;
+	}
+}*/
+

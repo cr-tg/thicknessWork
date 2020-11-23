@@ -1,0 +1,17 @@
+﻿  thickNessTestWithSDF.cpp
+E:\vs project\myWork\includes\learnopengl\mesh.h(88,1): warning C4267: “参数”: 从“size_t”转换到“GLsizei”，可能丢失数据
+E:\vs project\myWork\thickNessTestWithSDF\thickNessTestWithSDF.cpp(106,43): warning C4244: “参数”: 从“GLuint64”转换到“int”，可能丢失数据
+E:\vs project\myWork\thickNessTestWithSDF\thickNessTestWithSDF.cpp(272,22): warning C4244: “初始化”: 从“double”转换到“float”，可能丢失数据
+E:\vs project\myWork\thickNessTestWithSDF\thickNessTestWithSDF.cpp(410,11): warning C4244: “=”: 从“double”转换到“float”，可能丢失数据
+E:\vs project\myWork\thickNessTestWithSDF\thickNessTestWithSDF.cpp(411,11): warning C4244: “=”: 从“double”转换到“float”，可能丢失数据
+E:\vs project\myWork\thickNessTestWithSDF\thickNessTestWithSDF.cpp(415,16): warning C4244: “初始化”: 从“double”转换到“float”，可能丢失数据
+E:\vs project\myWork\thickNessTestWithSDF\thickNessTestWithSDF.cpp(416,16): warning C4244: “初始化”: 从“double”转换到“float”，可能丢失数据
+E:\vs project\myWork\thickNessTestWithSDF\thickNessTestWithSDF.cpp(418,10): warning C4244: “=”: 从“double”转换到“float”，可能丢失数据
+E:\vs project\myWork\thickNessTestWithSDF\thickNessTestWithSDF.cpp(419,10): warning C4244: “=”: 从“double”转换到“float”，可能丢失数据
+E:\vs project\myWork\thickNessTestWithSDF\thickNessTestWithSDF.cpp(426,28): warning C4244: “参数”: 从“double”转换到“float”，可能丢失数据
+  正在生成代码
+  14 of 395 functions ( 3.5%) were compiled, the rest were copied from previous compilation.
+    6 functions were new in current compilation
+    3 functions had inline decision re-evaluated but remain unchanged
+  已完成代码的生成
+  thickNessTestWithSDF.vcxproj -> E:\vs project\myWork\x64\Release\thickNessTestWithSDF.exe

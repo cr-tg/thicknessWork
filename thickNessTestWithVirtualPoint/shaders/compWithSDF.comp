@@ -1,0 +1,32 @@
+#version 460 core
+//有了下面的插件才可以进行float的原子操作累加
+#extension GL_NV_shader_atomic_float : require
+
+layout(binding = 3,r32ui) uniform restrict uimage2D uThickImage;
+layout(binding = 4,r32ui) uniform restrict uimage2D uSdfThickImage;
+layout(binding = 5,r32f) uniform restrict image2D ErrorImage;
+
+layout(local_size_x = 32, local_size_y = 32, local_size_z = 1) in;
+
+
+void main()
+{
+	ivec2 coord = ivec2(gl_GlobalInvocationID.xy);
+	float sdfValue = uintBitsToFloat(imageLoad(uSdfThickImage, coord).r);
+	float currentValue = uintBitsToFloat(imageLoad(uThickImage, coord).r);
+	float error = (sdfValue - currentValue);
+	//float error = abs(sdfValue - currentValue);
+	if (coord != ivec2(0)) imageStore(ErrorImage, coord, vec4(error));
+	//imageAtomicAdd(ErrorImage, ivec2(0), 0.001);//934.579
+	imageAtomicAdd(ErrorImage, ivec2(0), error);//396.647
+}
+
+
+
+// compute shader的内置变量的说明
+//gl_WorkGroupSize 存储本地工作组大小的常数，由local_size_x等决定
+//gl_NumWorkGroups 存储全局工作组的大小
+//gl_LocalInvocationID 当前执行单元在本地工作组的位置，从uvec3(0)到gl_WorkGroupSize-uvec3(1)
+//gl_WorkGroupID 当前工作组在更大的全局工作组的位置，从uvec3(0)到gl_NumWorkGroups-uvec3(1)
+//gl_GlobalInvocationID = gl_WorkGroupID*gl_WorkGroupSize + gl_LocalInvocationID
+//gl_LocalInvocationIndex = gl_LocalInvocationID的一维线性表达

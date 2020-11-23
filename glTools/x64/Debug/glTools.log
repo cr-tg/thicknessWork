@@ -1,0 +1,9 @@
+﻿  Render.cpp
+E:\vs project\thickNessWork\thicknessWork\glTools\Render.cpp(593,1): fatal error C1010: 在查找预编译头时遇到意外的文件结尾。是否忘记了向源中添加“#include "pch.h"”?
+  TestStatic.cpp
+E:\vs project\thickNessWork\thicknessWork\glTools\TestStatic.cpp(10,1): fatal error C1010: 在查找预编译头时遇到意外的文件结尾。是否忘记了向源中添加“#include "pch.h"”?
+  DisplayTexture.cpp
+E:\vs project\thickNessWork\thicknessWork\glTools\DisplayTexture.cpp(104,1): fatal error C1010: 在查找预编译头时遇到意外的文件结尾。是否忘记了向源中添加“#include "pch.h"”?
+  Window.cpp
+E:\vs project\thickNessWork\thicknessWork\glTools\Window.cpp(43,1): fatal error C1010: 在查找预编译头时遇到意外的文件结尾。是否忘记了向源中添加“#include "pch.h"”?
+  正在生成代码...

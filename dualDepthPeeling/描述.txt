@@ -1,0 +1,3 @@
+1.对于front to back的blending公式还没有完全搞懂
+2.现在只是弄了一个两层的dual depth peeling，如果有3层的话，相当于此时的frontTex和backTex都会blending第三层的结果，重用了一次，
+此时的blending公式又需要重写。

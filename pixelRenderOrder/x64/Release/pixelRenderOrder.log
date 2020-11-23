@@ -1,0 +1,17 @@
+﻿  pixelRenderOrder.cpp
+E:\vs project\myWork\includes\learnopengl\mesh.h(88,1): warning C4267: “参数”: 从“size_t”转换到“GLsizei”，可能丢失数据
+E:\vs project\myWork\pixelRenderOrder\pixelRenderOrder.cpp(101,64): warning C4244: “参数”: 从“double”转换到“int”，可能丢失数据
+E:\vs project\myWork\pixelRenderOrder\pixelRenderOrder.cpp(110,22): warning C4244: “初始化”: 从“double”转换到“float”，可能丢失数据
+E:\vs project\myWork\pixelRenderOrder\pixelRenderOrder.cpp(183,11): warning C4244: “=”: 从“double”转换到“float”，可能丢失数据
+E:\vs project\myWork\pixelRenderOrder\pixelRenderOrder.cpp(185,11): warning C4244: “=”: 从“double”转换到“float”，可能丢失数据
+E:\vs project\myWork\pixelRenderOrder\pixelRenderOrder.cpp(189,16): warning C4244: “初始化”: 从“double”转换到“float”，可能丢失数据
+E:\vs project\myWork\pixelRenderOrder\pixelRenderOrder.cpp(190,16): warning C4244: “初始化”: 从“double”转换到“float”，可能丢失数据
+E:\vs project\myWork\pixelRenderOrder\pixelRenderOrder.cpp(192,10): warning C4244: “=”: 从“double”转换到“float”，可能丢失数据
+E:\vs project\myWork\pixelRenderOrder\pixelRenderOrder.cpp(193,10): warning C4244: “=”: 从“double”转换到“float”，可能丢失数据
+E:\vs project\myWork\pixelRenderOrder\pixelRenderOrder.cpp(200,28): warning C4244: “参数”: 从“double”转换到“float”，可能丢失数据
+  正在生成代码
+  2 of 381 functions ( 0.5%) were compiled, the rest were copied from previous compilation.
+    0 functions were new in current compilation
+    0 functions had inline decision re-evaluated but remain unchanged
+  已完成代码的生成
+  pixelRenderOrder.vcxproj -> E:\vs project\myWork\x64\Release\pixelRenderOrder.exe

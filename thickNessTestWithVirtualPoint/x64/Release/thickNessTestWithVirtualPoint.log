@@ -1,0 +1,18 @@
+﻿  thicknessWithVirtualPoint.cpp
+E:\vs project\myWork\includes\learnopengl\mesh.h(88,1): warning C4267: “参数”: 从“size_t”转换到“GLsizei”，可能丢失数据
+E:\vs project\myWork\thickNessTestWithVirtualPoint\thicknessWithVirtualPoint.cpp(114,43): warning C4244: “参数”: 从“GLuint64”转换到“int”，可能丢失数据
+E:\vs project\myWork\thickNessTestWithVirtualPoint\thicknessWithVirtualPoint.cpp(133,45): warning C4244: “参数”: 从“GLuint64”转换到“int”，可能丢失数据
+E:\vs project\myWork\thickNessTestWithVirtualPoint\thicknessWithVirtualPoint.cpp(321,22): warning C4244: “初始化”: 从“double”转换到“float”，可能丢失数据
+E:\vs project\myWork\thickNessTestWithVirtualPoint\thicknessWithVirtualPoint.cpp(522,11): warning C4244: “=”: 从“double”转换到“float”，可能丢失数据
+E:\vs project\myWork\thickNessTestWithVirtualPoint\thicknessWithVirtualPoint.cpp(523,11): warning C4244: “=”: 从“double”转换到“float”，可能丢失数据
+E:\vs project\myWork\thickNessTestWithVirtualPoint\thicknessWithVirtualPoint.cpp(527,16): warning C4244: “初始化”: 从“double”转换到“float”，可能丢失数据
+E:\vs project\myWork\thickNessTestWithVirtualPoint\thicknessWithVirtualPoint.cpp(528,16): warning C4244: “初始化”: 从“double”转换到“float”，可能丢失数据
+E:\vs project\myWork\thickNessTestWithVirtualPoint\thicknessWithVirtualPoint.cpp(530,10): warning C4244: “=”: 从“double”转换到“float”，可能丢失数据
+E:\vs project\myWork\thickNessTestWithVirtualPoint\thicknessWithVirtualPoint.cpp(531,10): warning C4244: “=”: 从“double”转换到“float”，可能丢失数据
+E:\vs project\myWork\thickNessTestWithVirtualPoint\thicknessWithVirtualPoint.cpp(538,28): warning C4244: “参数”: 从“double”转换到“float”，可能丢失数据
+  正在生成代码
+  10 of 390 functions ( 2.6%) were compiled, the rest were copied from previous compilation.
+    0 functions were new in current compilation
+    14 functions had inline decision re-evaluated but remain unchanged
+  已完成代码的生成
+  thickNessTestWithVirtualPoint.vcxproj -> E:\vs project\myWork\x64\Release\thickNessTestWithVirtualPoint.exe

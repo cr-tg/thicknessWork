@@ -1,0 +1,26 @@
+﻿  thicknessDepthPeeling.cpp
+E:\vs project\thickNessWork\thicknessWork\includes\learnopengl\mesh.h(88,1): warning C4267: “参数”: 从“size_t”转换到“GLsizei”，可能丢失数据
+E:\vs project\thickNessWork\thicknessWork\thickNessTestWithDepthPeeling\thicknessDepthPeeling.cpp(107,49): warning C4244: “参数”: 从“T”转换到“int”，可能丢失数据
+          with
+          [
+              T=float
+          ]
+E:\vs project\thickNessWork\thicknessWork\thickNessTestWithDepthPeeling\thicknessDepthPeeling.cpp(107,36): warning C4244: “参数”: 从“T”转换到“int”，可能丢失数据
+          with
+          [
+              T=float
+          ]
+E:\vs project\thickNessWork\thicknessWork\thickNessTestWithDepthPeeling\thicknessDepthPeeling.cpp(154,22): warning C4244: “初始化”: 从“double”转换到“float”，可能丢失数据
+E:\vs project\thickNessWork\thicknessWork\thickNessTestWithDepthPeeling\thicknessDepthPeeling.cpp(459,11): warning C4244: “=”: 从“double”转换到“float”，可能丢失数据
+E:\vs project\thickNessWork\thicknessWork\thickNessTestWithDepthPeeling\thicknessDepthPeeling.cpp(460,11): warning C4244: “=”: 从“double”转换到“float”，可能丢失数据
+E:\vs project\thickNessWork\thicknessWork\thickNessTestWithDepthPeeling\thicknessDepthPeeling.cpp(464,16): warning C4244: “初始化”: 从“double”转换到“float”，可能丢失数据
+E:\vs project\thickNessWork\thicknessWork\thickNessTestWithDepthPeeling\thicknessDepthPeeling.cpp(465,16): warning C4244: “初始化”: 从“double”转换到“float”，可能丢失数据
+E:\vs project\thickNessWork\thicknessWork\thickNessTestWithDepthPeeling\thicknessDepthPeeling.cpp(467,10): warning C4244: “=”: 从“double”转换到“float”，可能丢失数据
+E:\vs project\thickNessWork\thicknessWork\thickNessTestWithDepthPeeling\thicknessDepthPeeling.cpp(468,10): warning C4244: “=”: 从“double”转换到“float”，可能丢失数据
+E:\vs project\thickNessWork\thicknessWork\thickNessTestWithDepthPeeling\thicknessDepthPeeling.cpp(475,28): warning C4244: “参数”: 从“double”转换到“float”，可能丢失数据
+  正在生成代码
+  8 of 433 functions ( 1.8%) were compiled, the rest were copied from previous compilation.
+    0 functions were new in current compilation
+    7 functions had inline decision re-evaluated but remain unchanged
+  已完成代码的生成
+  thickNessTestWithDepthPeeling.vcxproj -> E:\vs project\thickNessWork\thicknessWork\x64\Release\thickNessTestWithDepthPeeling.exe

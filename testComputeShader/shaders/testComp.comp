@@ -1,0 +1,23 @@
+#version 460 core
+
+//layout(binding = 0,rgba32f) uniform readonly image2D img_input;
+layout(binding = 0,rgba8ui) uniform readonly uimage2D img_input;
+layout(binding = 1) uniform writeonly image2D img_output;
+layout(local_size_x = 32,local_size_y = 32) in;
+
+void main()
+{
+	vec4 inColor = imageLoad(img_input,ivec2(gl_GlobalInvocationID.xy));
+	vec4 outColor = vec4(1.0) - inColor;
+	imageStore(img_output,ivec2(gl_GlobalInvocationID.xy),outColor);
+}
+
+
+
+// compute shader的内置变量的说明
+//gl_WorkGroupSize 存储本地工作组大小的常数，由local_size_x等决定
+//gl_NumWorkGroups 存储全局工作组的大小
+//gl_LocalInvocationID 当前执行单元在本地工作组的位置，从uvec3(0)到gl_WorkGroupSize-uvec3(1)
+//gl_WorkGroupID 当前工作组在更大的全局工作组的位置，从uvec3(0)到gl_NumWorkGroups-uvec3(1)
+//gl_GlobalInvocationID = gl_WorkGroupID*gl_WorkGroupSize + gl_LocalInvocationID
+//gl_LocalInvocationIndex = gl_LocalInvocationID的一维线性表达
