@@ -1,0 +1,22 @@
+#version 460 core
+
+layout(binding = 0) uniform writeonly uimage2D uThickPtrTex;
+layout(binding = 0) uniform sampler2DArray depthTexSet;
+uniform int uAllDepthLayer;
+
+layout(local_size_x = 32, local_size_y = 32, local_size_z = 1) in;
+
+void main()
+{  
+	float thick = 0.0f;
+	float bias = 1e-4;
+	for(int i = uAllDepthLayer-1;i>-1;i-=2)
+	{
+		float lastDepth = texelFetch(depthTexSet,ivec3(gl_GlobalInvocationID.xy,i),0).r;
+		if(abs(lastDepth-1.0)< bias) continue;
+		float preDepth = texelFetch(depthTexSet,ivec3(gl_GlobalInvocationID.xy,i-1),0).r;
+		thick += abs(lastDepth - preDepth);
+	}
+	uint storeThick = floatBitsToUint(thick);
+	imageStore(uThickPtrTex,ivec2(gl_GlobalInvocationID.xy),ivec4(storeThick));
+}

@@ -1,8 +1,8 @@
 #version 460 core
 //在从光源视角下的depth_peeling，是不需要outColor的
-layout(location = 0) out vec4 outColor;//渲染到帧缓冲中的纹理0
+layout(location = 0) out vec4 outThick;//渲染到帧缓冲中的纹理0
 layout(binding = 0) uniform sampler2DArray depthTexSet;
-uniform vec4 uObjColor;
+layout(binding = 1) uniform sampler2D thickTex;
 uniform int uLayerIndex;
 
 void main()
@@ -15,8 +15,9 @@ void main()
 		vec2 texsize = textureSize(depthTexSet,0).xy;
 		vec2 texcoord = vec2(gl_FragCoord.xy/texsize.xy);
 		float preDepth = texture(depthTexSet,vec3(texcoord,uLayerIndex-1)).r;
+		
 		float addBias = 1e-4;
 		if(currentDepth <= preDepth+addBias) discard;
 	}
-	outColor = uObjColor;
+	//outColor = uObjColor;
 }

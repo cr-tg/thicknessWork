@@ -41,6 +41,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "thickNessTestWithDualDepthP
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "dualDepthPeeling", "dualDepthPeeling\dualDepthPeeling.vcxproj", "{3412D84F-A2A4-4F87-ACD6-977F8099C26C}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "thickNessTestWithDeferredDepthPeeling", "thickNessTestWithDeferredDepthPeeling\thickNessTestWithDeferredDepthPeeling.vcxproj", "{FC709B1C-43E2-499E-A4D7-8803431AC670}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -201,6 +203,14 @@ Global
 		{3412D84F-A2A4-4F87-ACD6-977F8099C26C}.Release|x64.Build.0 = Release|x64
 		{3412D84F-A2A4-4F87-ACD6-977F8099C26C}.Release|x86.ActiveCfg = Release|Win32
 		{3412D84F-A2A4-4F87-ACD6-977F8099C26C}.Release|x86.Build.0 = Release|Win32
+		{FC709B1C-43E2-499E-A4D7-8803431AC670}.Debug|x64.ActiveCfg = Debug|x64
+		{FC709B1C-43E2-499E-A4D7-8803431AC670}.Debug|x64.Build.0 = Debug|x64
+		{FC709B1C-43E2-499E-A4D7-8803431AC670}.Debug|x86.ActiveCfg = Debug|Win32
+		{FC709B1C-43E2-499E-A4D7-8803431AC670}.Debug|x86.Build.0 = Debug|Win32
+		{FC709B1C-43E2-499E-A4D7-8803431AC670}.Release|x64.ActiveCfg = Release|x64
+		{FC709B1C-43E2-499E-A4D7-8803431AC670}.Release|x64.Build.0 = Release|x64
+		{FC709B1C-43E2-499E-A4D7-8803431AC670}.Release|x86.ActiveCfg = Release|Win32
+		{FC709B1C-43E2-499E-A4D7-8803431AC670}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
